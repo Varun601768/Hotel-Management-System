@@ -1,0 +1,70 @@
+<!-- account-settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="sty1.css"> <!-- Optional: Link to your CSS -->
+</head>
+<body>
+    <header>
+        <h1>Account Settings</h1>
+
+    </header>
+
+
+
+    <div class="navbar">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="facilities.html">Facilities</a>
+        <button id="logoutButton" onclick="handleLogout()">Logout</button>
+    </div>
+
+    <main>
+        <form id="settingsForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">New Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Update Settings</button>
+        </form>
+
+        <div id="message" style="color: green; margin-top: 10px;"></div>
+    </main>
+
+    <footer>
+        <p>DESIGNED BY VARUN M C</p>
+    </footer>
+
+    <script>
+        // Handle logout operation
+        function handleLogout() {
+            localStorage.setItem('isLoggedIn', 'false'); // Clear the login state
+            window.location.href = 'home.html'; // Redirect to the home page
+        }
+
+        // Form submission handling
+        document.getElementById('settingsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get the input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate saving the settings
+            alert('Account settings updated successfully!');
+
+            // Optionally display a confirmation message
+            document.getElementById('message').innerText = 'Your account has been updated!';
+            
+            // Here you can also save the values to local storage or make an API call
+            localStorage.setItem('username', username);
+            // Note: Password should not be stored in localStorage for security reasons.
+        });
+    </script>
+</body>
+</html>

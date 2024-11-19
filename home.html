@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section>
+    <body>
+    <header class="header">
+        <h1>Welcome to Our Hotel</h1>
+        <style>
+               
+         .swiper-container {
+            width: 100%;
+            height: 300px;
+        }
+
+        .testimonial-card {
+            background: #0b0b0b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+        </style>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="morerooms.html">Rooms</a>
+        <a href="facility.html">Facilities</a>
+        <a href="Contact.html">Contact</a>
+        <a href="about.html">About</a>
+        <button id="loginButton" onclick="window.location.href='login.html'">Login</button>
+        <button id="registerButton" onclick="window.location.href='registration.html'">Register</button>
+        <button id="dashboardButton" onclick="window.location.href='dashboard.html'" style="display: none;">Dashboard</button>
+    </nav>
+    </header>
+
+    <main>
+        <marquee style="color: chartreuse; background-color: azure; font-size: 20px;">Hello Discount closed Book Now!! Hurry Up</marquee>
+        <section class="intro">
+            <p>Discover unparalleled luxury and comfort at our hotel. Whether you're traveling for business or leisure, our world-class amenities and exceptional service will ensure an unforgettable stay.</p>
+            <button onclick="window.location.href='about.html'">Explore More</button>
+        </section>
+
+        <h2 style="color: hsl(0, 0%, 4%); font-style: inherit; font: sans-serif; background-color: azure;">Our Rooms</h2>
+        <div class="room-cards">
+                <div class="room-card">
+                    <h3>Single Room</h3>
+                    <img src="1.png" alt="Single Room">
+                    <h3>2000₹</h3>
+                    <p>Our single rooms are perfect for solo travelers. Enjoy a comfortable bed, free Wi-Fi, and a private bathroom.</p>
+                   
+                    <button onclick="handleBookNow('single')">BOOK NOW</button>
+                    <button class="bk1" onclick="redirectToMoreDetails('single')">MORE DETAILS</button>
+                </div>
+                <div class="room-card">
+                    <h3>Double Room</h3>
+                    <img src="3.png" alt="Double Room">
+                    <h3>3000₹</h3>
+                    <p>Our double rooms are ideal for couples. Features include a king-sized bed, free Wi-Fi, and a spacious bathroom.</p>
+                    <button onclick="handleBookNow('double')">BOOK NOW</button>
+                    <button class="bk1" onclick="redirectToMoreDetails('double')">MORE DETAILS</button>
+                </div>
+                <div class="room-card">
+                    <h3>Suite</h3>
+                    <img src="4.png" alt="Suite">
+                    <h3>5000₹</h3>
+                    <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+                    <button onclick="handleBookNow('suite')">BOOK NOW</button>
+                    <button class="bk1" onclick="MoreDetails('suite')">MORE DETAILS</button>
+                </div>
+            </div>
+            <button onclick="window.location.href='morerooms.html'" id="bk" type="button" class="btn">MORE ROOMS>></button><br><br><br>
+    
+    
+        </div>
+
+        <h2 style="color: hsl(0, 0%, 4%); font-style: inherit; font: sans-serif; background-color: azure;">Our Facilities</h2>
+        <div class="room-cards">
+                <div class="room-card">
+                    <h3>Swimming Cool</h3>
+                    <img src="rr.webp" alt="Double Room">
+                </div>
+                <div class="room-card">
+                    <h3>Spa</h3>
+                    <img src="spa.jpg" alt="Double Room">
+                </div>
+                <div class="room-card">
+                    <h3>Gym</h3>
+                    <img src="web.webp" alt="Double Room">
+                </div>
+               
+                </div>
+                <button onclick="window.location.href='facility.html'" id="bk" type="button" class="btn">MORE FACILITY>></button><br><br><br>
+
+                <section id="testimonials">
+                    <h2 style="color:rgba(197, 232, 25, 0.79);">What Our Guests Say </h2>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-card"><br><br>
+                                    <i class="fa-solid fa-user"></i><br><br><br>
+                                    <p class="testimonial-text">"The best hotel experience I've ever had! The staff was incredibly friendly, and the room was spotless. Highly recommended!"</p>
+                                    <p class="testimonial-author">- John Doe</p>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card"><br><br>
+                                    <i class="fa-solid fa-user"></i><br><br><br>
+                                    <p class="testimonial-text">"Amazing service and beautiful rooms. The food was delicious, and the facilities were top-notch. Will definitely visit again!"</p>
+                                    <p class="testimonial-author">- Jane Smith</p>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card"><br><br>
+                                    <i class="fa-solid fa-user"></i><br><br><br>
+                                    <p class="testimonial-text">"Great location, comfortable rooms, and exceptional customer service. A wonderful place to stay during our vacation."</p>
+                                    <p class="testimonial-author">- Emily Johnson</p>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card"><br><br>
+                                    <i class="fa-solid fa-user"></i><br><br><br>
+                                    <p class="testimonial-text">"Fantastic experience from start to finish. The spa was incredibly relaxing, and the rooms were luxurious."</p>
+                                    <p class="testimonial-author">- Michael Brown</p>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <!-- Add more slides as needed -->
+                        </div>
+                        
+                </section>
+             
+                
+                
+                <br><br><br><br><br><br><br><br><br>
+                <footer>
+                    <div class="footer-content">
+                        <div>
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li><a href="#">Phone: +8277621878</a></li>
+                                <li><a href="#">Email: hotel@ourhotel.com</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="home.html">Home</a></li>
+                                <li><a href="facility.html">Facilities</a></li>
+                                <li><a href="morerooms.html">Rooms</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <ul>
+                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#">Instagram</a></li>
+                                <li><a href="#">Twitter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>DESIGNED BY VARUN M C</p>
+                </footer>
+            </section>
+        
+        
+        <main id="roomsSection">
+            <!-- Other content like booking forms, room details, etc. -->
+        </main>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+           function redirectToMoreDetails(roomType) {
+            window.location.href = `moredetails.html?room=${roomType}`;
+        }
+
+        function handleBookNow(roomType) {
+            // Check if user is logged in or registered
+            if (userIsLoggedIn()) {
+                window.location.href = 'booking.html';
+            } else {
+                alert('Please log in or register to book a room.');
+                // Optionally, you can redirect them to the login or registration page
+                window.location.href = 'login.html';
+            }
+        }
+
+        function userIsLoggedIn() {
+            // Implement your actual login check logic here
+            // For now, return false to simulate user not logged in
+            return false;
+        }
+        // Simulating login state using localStorage
+        function userIsLoggedIn() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+        window.onload = function () {
+            if (userIsLoggedIn()) {
+                document.getElementById('loginButton').style.display = 'none';
+                document.getElementById('registerButton').style.display = 'none';
+                document.getElementById('dashboardButton').style.display = 'inline-block';
+            } else {
+                document.getElementById('loginButton').style.display = 'inline-block';
+                document.getElementById('registerButton').style.display = 'inline-block';
+                document.getElementById('dashboardButton').style.display = 'none';
+            }
+        };
+
+        // Example function to simulate successful login
+        function login() {
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.reload(); // Reload to update UI
+        }
+        $(document).ready(function(){
+    $("nav a").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        }
+    });
+});
+$(document).ready(function(){
+    $(".room-card").hide().fadeIn(2000);  // Fades in the room cards over 2 seconds
+});
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <!-- Swiper Initialization -->
+    <script>
+        var swiper = new Swiper(".swiper-container", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      slidesPerView: "3",
+      loop: true,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        640: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }
+    });
+    </script>
+</body>
+
+</html>

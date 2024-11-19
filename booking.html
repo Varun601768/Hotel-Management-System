@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(2.png);
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(7, 7, 7, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        footer {
+            background-color: rgba(7, 7, 7, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        nav{
+            background-color: black;
+            padding: 20px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Form Container Styles */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #bookingForm {
+            background-color: rgba(7, 7, 7, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            color: white;
+        }
+
+        /* Form Elements Styles */
+        #bookingForm label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #bookingForm input,
+        #bookingForm select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        #bookingForm button {
+            background-color: #004080;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 48%;
+            margin-right: 2%;
+        }
+
+        #bookingForm button:last-of-type {
+            margin-right: 0;
+            background-color: #d9534f;
+        }
+
+        #bookingForm button:hover {
+            opacity: 0.8;
+        }
+
+        /* Payment Modal Styles */
+        #paymentModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #paymentModal .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        #paymentModal input {
+            margin-top: 15px;
+            padding: 10px;
+            width: calc(100% - 20px);
+        }
+
+        #paymentModal button {
+            margin-top: 15px;
+            background-color: #004080;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        #paymentModal button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Book Your Room</h1>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="morerooms.html">Rooms</a>
+            <a href="facility.html">Facilities</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="bookingForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required>
+
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required>
+
+            <label for="roomType">Room Type:</label>
+            <select id="roomType" name="roomType" required>
+                <option value="Single">Single Room</option>
+                <option value="Double">Double Room</option>
+                <option value="Suite">Suite</option>
+            </select>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" required>
+
+            <button type="submit">Book Now</button>
+            <button type="button" onclick="window.location.href='home.html'">Cancel</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>DESIGNED BY VARUN M C</p>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal">
+        <div class="modal-content">
+            <h3>Booking Confirmed</h3>
+            <p>Please complete your payment</p>
+            <input type="text" placeholder="Enter Card Number">
+            <input type="text" placeholder="Expiration Date">
+            <input type="text" placeholder="CVV">
+            <button id="confirmPayment">Confirm Payment</button>
+        </div>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+    <script>
+        // Function to check if user is logged in
+        function userIsLoggedIn() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+
+        // Redirect to login if not logged in
+        window.onload = function () {
+            if (!userIsLoggedIn()) {
+                alert('Please log in to access the booking page.');
+                window.location.href = 'login.html';
+            }
+
+            // Set the min attribute of check-in and check-out date fields to current date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkin').setAttribute('min', today);
+            document.getElementById('checkout').setAttribute('min', today);
+        };
+
+        // Form submission and booking confirmation
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const checkinDate = document.getElementById('checkin').value;
+            const checkoutDate = document.getElementById('checkout').value;
+
+            // Validate check-out date is after check-in date
+            if (new Date(checkoutDate) <= new Date(checkinDate)) {
+                alert("Check-out date must be later than check-in date.");
+            } else {
+                // Display payment modal
+                document.getElementById('paymentModal').style.display = 'flex';
+            }
+        });
+
+        // Handle payment confirmation
+        document.getElementById('confirmPayment').addEventListener('click', function () {
+            alert('Payment successful! Your booking details will be added to your dashboard.');
+            
+            // Simulate saving the booking details
+            const bookingDetails = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                checkin: document.getElementById('checkin').value,
+                checkout: document.getElementById('checkout').value,
+                roomType: document.getElementById('roomType').value,
+                guests: document.getElementById('guests').value
+            };
+
+            // Save booking details to localStorage (simulating saving to dashboard)
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(bookingDetails);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            // Close the modal
+            document.getElementById('paymentModal').style.display = 'none';
+
+            // Redirect to user dashboard (replace with actual dashboard URL)
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+
+</html>

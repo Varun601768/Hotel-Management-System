@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #1a1d1c;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #333;
+            padding: 10px;
+        }
+        .video-container video {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+        .team-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .team-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        /* Team carousel with continuous scroll */
+        .team-carousel {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            margin: 20px auto;
+            max-width: 1000px;
+            align-items: center;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            animation: scrollImages 20s linear infinite;
+        }
+        .team-member {
+            text-align: center;
+            margin: 0 20px;
+        }
+        .team-carousel img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .team-member h3 {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        @keyframes scrollImages {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        footer .footer-content div {
+            flex: 1;
+            margin: 0 10px;
+        }
+        footer .footer-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        footer .footer-content ul li {
+            margin: 5px 0;
+        }
+        footer .footer-content ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        nav {
+            background-color: black;
+            padding: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        .about-images {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+        }
+        .about-images img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border: solid 2px black ;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>About Us</h1>
+</header>
+<!-- Menu -->
+<nav>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="morerooms.html">Rooms</a></li>
+        <li><a href="facility.html">Facilities</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="about-section">
+        <h2>Our Story</h2>
+        <div class="about-images">
+            <img src="hotel.jpg" alt="Hotel Exterior">
+            <img src="hall.jpg" alt="Hotel Room">
+            <img src="bed.jpg" alt="Dining Area">
+        </div>
+
+        <p>Welcome to our hotel! We pride ourselves on providing the best service and comfort to our guests. 
+           Our team is dedicated to ensuring your stay is unforgettable with luxurious rooms, exceptional 
+           dining experiences, and top-notch facilities.
+        </p>
+        <p>With years of experience in the hospitality industry, we have grown to become one of the leading 
+           names, offering a perfect blend of modern amenities and classic elegance.
+        </p>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <video src="about.mp4" autoplay muted loop></video>
+    </div>
+
+    <!-- Management Team Section -->
+    <div class="team-section">
+        <h2>Our Management Team</h2>
+        <div class="team-carousel">
+            <div class="carousel-track">
+                <div class="team-member">
+                    <img src="mn1.jpg" alt="Mr. Ramesh">
+                    <h3>Mr. Ramesh</h3>
+                </div>
+                <div class="team-member">
+                    <img src="mn2.avif" alt="Ms. Anjali">
+                    <h3>Mr. Rajendraprasad</h3>
+                </div>
+                <div class="team-member">
+                    <img src="mn3.png" alt="Mr. Arjun">
+                    <h3>Mr. Arjun</h3>
+                </div>
+                <div class="team-member">
+                    <img src="mn4.jpg" alt="Ms. Priya">
+                    <h3>Mr. Raghav</h3>
+                </div>
+                <div class="team-member">
+                    <img src="mn5.jpg" alt="Mr. Rakesh">
+                    <h3>Mr. Rakesh</h3>
+                </div>
+                <!-- Repeat members to create a continuous loop -->
+                <div class="team-member">
+                    <img src="mn6.jpg" alt="Mr. Ramesh">
+                    <h3>Mr. Leo</h3>
+                </div>
+                <div class="team-member">
+                    <img src="mn7.jpg" alt="Ms. Anjali">
+                    <h3>Ms. Harshendra</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h4>Contact Us</h4>
+            <ul>
+                <li><a href="#">Phone: +967845677</a></li>
+                <li><a href="#">Email: varunmcchinthu@gmail.com</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="facility.html">Facilities</a></li>
+                <li><a href="morerooms.html">Rooms</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>DESIGNED BY VARUN M C</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        /* Additional styling for dashboard */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #111212;
+            padding: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .navbar a:hover{
+            color: aqua;
+        }
+
+        .navbar button {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: #fff;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #004080;
+        }
+
+        /* Styling for account settings modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .modal input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal button {
+            padding: 10px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-modal {
+            float: right;
+            cursor: pointer;
+            color: #d9534f;
+            font-weight: bold;
+        }
+        section{
+            border: solid black;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        Welcome, User Dashboard
+    </header>
+
+    <div class="navbar">
+        <div>
+            <a href="home.html">Home</a>
+            <a href="morerooms.html">Rooms</a>
+            <a href="facility.html">Facilities</a>
+            <a href="Contact.html">Contact</a>
+            <a href="about.html">About</a>
+        </div>
+        <div>
+            <button id="logoutButton" onclick="handleLogout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2>Overview</h2>
+       <section>
+        <div class="card-container">
+            <div class="card">
+                <h3>Upcoming Booking</h3>
+                <div id="upcomingBooking">
+                    <p>No bookings available.</p>
+                </div>
+                <button onclick="cancelBooking()">Cancel All Booking</button>
+            </div>
+
+            <div class="card">
+                <h3>Selected Facilities</h3>
+                <div id="selectedFacilities">
+                    <p>No facilities selected.</p>
+                </div>
+                <button onclick="cancelFacilities()">Cancel All Facilities</button>
+            </div>
+
+            <div class="card">
+                <h3>Account Settings</h3>
+                <button onclick="openModal()">Manage Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Settings Modal -->
+    <div class="modal" id="accountModal">
+        <span class="close-modal" onclick="closeModal()">×</span>
+        <div class="modal-header">Update Account Details</div>
+        <form id="accountForm">
+            <input type="text" id="userName" placeholder="Full Name">
+            <input type="email" id="userEmail" placeholder="Email">
+            <input type="password" id="userPassword" placeholder="New Password">
+            <button type="button" onclick="updateAccount()">Save Changes</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h4>Contact Us</h4>
+            <ul>
+                <li><a href="#">Phone: +8277621878</a></li>
+                <li><a href="#">Email: hotel@ourhotel.com</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="facility.html">Facilities</a></li>
+                <li><a href="morerooms.html">Rooms</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>DESIGNED BY VARUN M C</p>
+</footer>
+
+    <script>
+        // Logout functionality
+        function handleLogout() {
+            localStorage.setItem('isLoggedIn', 'false'); // Clear the login state
+            window.location.href = 'home.html'; // Redirect to the home page
+        }
+
+        // Open and close modal
+        function openModal() {
+            document.getElementById('accountModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('accountModal').classList.remove('active');
+        }
+
+        // Update account details (saving them to localStorage for this demo)
+        function updateAccount() {
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            const userPassword = document.getElementById('userPassword').value;
+
+            if (userName && userEmail && userPassword) {
+                // Save updated details to localStorage (in a real scenario, send them to the server)
+                localStorage.setItem('userName', userName);
+                localStorage.setItem('userEmail', userEmail);
+                localStorage.setItem('userPassword', userPassword);
+
+                alert('Account details updated successfully!');
+                closeModal();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Load booking data and selected facilities
+        window.onload = function() {
+            // Check if the user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                alert('You are not logged in.');
+                window.location.href = 'login.html';
+            } else {
+                loadBookingData();
+                loadFacilitiesData();
+            }
+        };
+
+        function loadBookingData() {
+            const upcomingBooking = document.getElementById('upcomingBooking');
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            
+            if (bookings.length > 0) {
+                const lastBooking = bookings[bookings.length - 1]; // Show the most recent booking
+                upcomingBooking.innerHTML = `
+                    <p>Room Type: ${lastBooking.roomType}</p>
+                    <p>Check-in: ${lastBooking.checkin}</p>
+                    <p>Check-out: ${lastBooking.checkout}</p>
+                    <p>Guests: ${lastBooking.guests}</p>
+                `;
+            } else {
+                upcomingBooking.innerHTML = `<p>No bookings available.</p>`;
+            }
+        }
+
+        function cancelBooking() {
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            if (bookings.length > 0) {
+                // Clear all booking details
+                localStorage.removeItem('bookings'); // Remove bookings from localStorage
+                alert('All booking details have been cleared.');
+                loadBookingData(); // Reload booking data to reflect changes
+            } else {
+                alert('No bookings available to cancel.');
+            }
+        }
+
+        function loadFacilitiesData() {
+    const selectedFacilities = JSON.parse(localStorage.getItem('selectedFacilities')) || [];
+    const facilitiesDiv = document.getElementById('selectedFacilities');
+
+    if (selectedFacilities.length > 0) {
+        facilitiesDiv.innerHTML = '<ul>' + selectedFacilities.map(facility => `<li>${facility}</li>`).join('') + '</ul>';
+    } else {
+        facilitiesDiv.innerHTML = '<p>No facilities selected.</p>'; // Display message if no facilities are selected
+    }
+}
+
+function cancelFacilities() {
+    localStorage.removeItem('selectedFacilities'); // Clear selected facilities from local storage
+    alert('All selected facilities have been cleared.');
+    loadFacilitiesData(); // Reload facilities data to reflect changes
+
+    // Optionally, you can also refresh the page if needed
+    // location.reload();
+}
+    </script>
+
+</body>
+</html>

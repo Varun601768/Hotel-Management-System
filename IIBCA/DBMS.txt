@@ -1,0 +1,342 @@
+**
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE CLIENT;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use CLIENT;
+Database changed
+mysql> CREATE TABLE client (
+    ->     clientno VARCHAR(10) NOT NULL PRIMARY KEY,
+    ->     name VARCHAR(10) NOT NULL,
+    ->     address1 VARCHAR(10) NOT NULL,
+    ->     address2 VARCHAR(10) NOT NULL,
+    ->     state VARCHAR(10),
+    ->     bal_due DECIMAL(10,2),
+    ->     CONSTRAINT chk_clientno CHECK (clientno LIKE 'C%')
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into Client values('C1001','Suchi','Nagara','Puttur','Karnataka',20000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into Client values('C1002','Sinchu','Tumbe','Bantwal','Karnataka',30000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Client values('C1003','Sanju','Bayar','Muguli','Kerala',10000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  insert into Client values('C1004','Suhas','Uppala','Kasaragod','Kerala',10000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Client values('C1005','Ram','Nagara','Puttur','Karnataka',12000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> > insert into Client values('C1006','Ashu','Darbe','Puttur','Karnataka',20000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> insert into Client values('C1006','Ashu','Darbe','Puttur','Karnataka',20000)' at line 1
+mysql> insert into Client values('C1006','Ashu','Darbe','Puttur','Karnataka',20000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Client values('C1007','Raj','K C Road','Bantwala','Karnataka',10000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  insert into Client values('C1008','Anju','Dasarakodi','Kalladka','Karnataka',12000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Client values('C1009','Sushma','BCRoad','Bantwala','Karnataka',13000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into Client values('C1010','Shoury','Melkar','BCRoad','Karnataka',14000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from client;
++----------+--------+------------+-----------+-----------+----------+
+| clientno | name   | address1   | address2  | state     | bal_due  |
++----------+--------+------------+-----------+-----------+----------+
+| C1001    | Suchi  | Nagara     | Puttur    | Karnataka | 20000.00 |
+| C1002    | Sinchu | Tumbe      | Bantwal   | Karnataka | 30000.00 |
+| C1003    | Sanju  | Bayar      | Muguli    | Kerala    | 10000.00 |
+| C1004    | Suhas  | Uppala     | Kasaragod | Kerala    | 10000.00 |
+| C1005    | Ram    | Nagara     | Puttur    | Karnataka | 12000.00 |
+| C1006    | Ashu   | Darbe      | Puttur    | Karnataka | 20000.00 |
+| C1007    | Raj    | K C Road   | Bantwala  | Karnataka | 10000.00 |
+| C1008    | Anju   | Dasarakodi | Kalladka  | Karnataka | 12000.00 |
+| C1009    | Sushma | BCRoad     | Bantwala  | Karnataka | 13000.00 |
+| C1010    | Shoury | Melkar     | BCRoad    | Karnataka | 14000.00 |
++----------+--------+------------+-----------+-----------+----------+
+10 rows in set (0.00 sec)
+
+mysql>  create table client1 as select clientno,name,bal_due from client where state='&state';
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Enter value for state: Karnataka
+    -> old 1: create table client1 as select clientno,name,bal_due from client where state='&state'
+    -> new 1: create table client1 as select clientno,name,bal_due from client where state='Karnataka'
+    -> ^C
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = 'Karnataka';
+ERROR 1050 (42S01): Table 'client1' already exists
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = 'Karnataka';
+ERROR 1050 (42S01): Table 'client1' already exists
+mysql> drop table client1
+    -> drop table client1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop table client1' at line 2
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = 'Karnataka';
+Query OK, 8 rows affected (0.07 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql>  select * from client1;
++----------+--------+----------+
+| clientno | name   | bal_due  |
++----------+--------+----------+
+| C1001    | Suchi  | 20000.00 |
+| C1002    | Sinchu | 30000.00 |
+| C1005    | Ram    | 12000.00 |
+| C1006    | Ashu   | 20000.00 |
+| C1007    | Raj    | 10000.00 |
+| C1008    | Anju   | 12000.00 |
+| C1009    | Sushma | 13000.00 |
+| C1010    | Shoury | 14000.00 |
++----------+--------+----------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = '&state';
+ERROR 1050 (42S01): Table 'client1' already exists
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = '&state';
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = 'Karnataka';
+Query OK, 8 rows affected (0.07 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from client1;
++----------+--------+----------+
+| clientno | name   | bal_due  |
++----------+--------+----------+
+| C1001    | Suchi  | 20000.00 |
+| C1002    | Sinchu | 30000.00 |
+| C1005    | Ram    | 12000.00 |
+| C1006    | Ashu   | 20000.00 |
+| C1007    | Raj    | 10000.00 |
+| C1008    | Anju   | 12000.00 |
+| C1009    | Sushma | 13000.00 |
+| C1010    | Shoury | 14000.00 |
++----------+--------+----------+
+8 rows in set (0.00 sec)
+
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = 'Karnataka';
+Query OK, 8 rows affected (0.07 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table client1 as select clientno,name,bal_due from client
+    -> where state='Kerala';
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from client1;
++----------+-------+----------+
+| clientno | name  | bal_due  |
++----------+-------+----------+
+| C1003    | Sanju | 10000.00 |
+| C1004    | Suhas | 10000.00 |
++----------+-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> drop table client1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE client1 AS
+    -> SELECT clientno, name, bal_due
+    -> FROM client
+    -> WHERE state = '&state';
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from client1;
+Empty set (0.00 sec)
+
+mysql> select * from client1;
+Empty set (0.00 sec)
+
+mysql> select * from client;
++----------+--------+------------+-----------+-----------+----------+
+| clientno | name   | address1   | address2  | state     | bal_due  |
++----------+--------+------------+-----------+-----------+----------+
+| C1001    | Suchi  | Nagara     | Puttur    | Karnataka | 20000.00 |
+| C1002    | Sinchu | Tumbe      | Bantwal   | Karnataka | 30000.00 |
+| C1003    | Sanju  | Bayar      | Muguli    | Kerala    | 10000.00 |
+| C1004    | Suhas  | Uppala     | Kasaragod | Kerala    | 10000.00 |
+| C1005    | Ram    | Nagara     | Puttur    | Karnataka | 12000.00 |
+| C1006    | Ashu   | Darbe      | Puttur    | Karnataka | 20000.00 |
+| C1007    | Raj    | K C Road   | Bantwala  | Karnataka | 10000.00 |
+| C1008    | Anju   | Dasarakodi | Kalladka  | Karnataka | 12000.00 |
+| C1009    | Sushma | BCRoad     | Bantwala  | Karnataka | 13000.00 |
+| C1010    | Shoury | Melkar     | BCRoad    | Karnataka | 14000.00 |
++----------+--------+------------+-----------+-----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from client1;
+Empty set (0.00 sec)
+
+mysql> WHERE state = 'Karnataka';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE state = 'Karnataka'' at line 1
+mysql> create table client2
+    -> as select clientno,name,address1,address2,state,bal_due
+    -> from client
+    -> where 1=2;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc client;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| clientno | varchar(10)   | NO   | PRI | NULL    |       |
+| name     | varchar(10)   | NO   |     | NULL    |       |
+| address1 | varchar(10)   | NO   |     | NULL    |       |
+| address2 | varchar(10)   | NO   |     | NULL    |       |
+| state    | varchar(10)   | YES  |     | NULL    |       |
+| bal_due  | decimal(10,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> desc client2;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| clientno | varchar(10)   | NO   |     | NULL    |       |
+| name     | varchar(10)   | NO   |     | NULL    |       |
+| address1 | varchar(10)   | NO   |     | NULL    |       |
+| address2 | varchar(10)   | NO   |     | NULL    |       |
+| state    | varchar(10)   | YES  |     | NULL    |       |
+| bal_due  | decimal(10,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table client
+    -> add(Penalty number(10,2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number(10,2))' at line 2
+mysql> ALTER TABLE client
+    -> ADD Penalty DECIMAL(10,2);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc client;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| clientno | varchar(10)   | NO   | PRI | NULL    |       |
+| name     | varchar(10)   | NO   |     | NULL    |       |
+| address1 | varchar(10)   | NO   |     | NULL    |       |
+| address2 | varchar(10)   | NO   |     | NULL    |       |
+| state    | varchar(10)   | YES  |     | NULL    |       |
+| bal_due  | decimal(10,2) | YES  |     | NULL    |       |
+| Penalty  | decimal(10,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> update client
+    -> set penalty=bal_due*0.1
+    -> where clientno in('C1002','C1005','C1009');
+Query OK, 3 rows affected (0.02 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from client;
++----------+--------+------------+-----------+-----------+----------+---------+
+| clientno | name   | address1   | address2  | state     | bal_due  | Penalty |
++----------+--------+------------+-----------+-----------+----------+---------+
+| C1001    | Suchi  | Nagara     | Puttur    | Karnataka | 20000.00 |    NULL |
+| C1002    | Sinchu | Tumbe      | Bantwal   | Karnataka | 30000.00 | 3000.00 |
+| C1003    | Sanju  | Bayar      | Muguli    | Kerala    | 10000.00 |    NULL |
+| C1004    | Suhas  | Uppala     | Kasaragod | Kerala    | 10000.00 |    NULL |
+| C1005    | Ram    | Nagara     | Puttur    | Karnataka | 12000.00 | 1200.00 |
+| C1006    | Ashu   | Darbe      | Puttur    | Karnataka | 20000.00 |    NULL |
+| C1007    | Raj    | K C Road   | Bantwala  | Karnataka | 10000.00 |    NULL |
+| C1008    | Anju   | Dasarakodi | Kalladka  | Karnataka | 12000.00 |    NULL |
+| C1009    | Sushma | BCRoad     | Bantwala  | Karnataka | 13000.00 | 1300.00 |
+| C1010    | Shoury | Melkar     | BCRoad    | Karnataka | 14000.00 |    NULL |
++----------+--------+------------+-----------+-----------+----------+---------+
+10 rows in set (0.00 sec)
+
+mysql> update client
+    -> set penalty=bal_due*0.08
+    -> where clientno not in('C1002','C1005','C1009');
+Query OK, 7 rows affected (0.02 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from client;
++----------+--------+------------+-----------+-----------+----------+---------+
+| clientno | name   | address1   | address2  | state     | bal_due  | Penalty |
++----------+--------+------------+-----------+-----------+----------+---------+
+| C1001    | Suchi  | Nagara     | Puttur    | Karnataka | 20000.00 | 1600.00 |
+| C1002    | Sinchu | Tumbe      | Bantwal   | Karnataka | 30000.00 | 3000.00 |
+| C1003    | Sanju  | Bayar      | Muguli    | Kerala    | 10000.00 |  800.00 |
+| C1004    | Suhas  | Uppala     | Kasaragod | Kerala    | 10000.00 |  800.00 |
+| C1005    | Ram    | Nagara     | Puttur    | Karnataka | 12000.00 | 1200.00 |
+| C1006    | Ashu   | Darbe      | Puttur    | Karnataka | 20000.00 | 1600.00 |
+| C1007    | Raj    | K C Road   | Bantwala  | Karnataka | 10000.00 |  800.00 |
+| C1008    | Anju   | Dasarakodi | Kalladka  | Karnataka | 12000.00 |  960.00 |
+| C1009    | Sushma | BCRoad     | Bantwala  | Karnataka | 13000.00 | 1300.00 |
+| C1010    | Shoury | Melkar     | BCRoad    | Karnataka | 14000.00 | 1120.00 |
++----------+--------+------------+-----------+-----------+----------+---------+
+10 rows in set (0.00 sec)
+
+mysql> rename client1 to new_client;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'client1 to new_client' at line 1
+mysql> RENAME TABLE client1 TO new_client;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> > select * from new_client;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> select * from new_client' at line 1
+mysql>  select * from new_client;
+Empty set (0.00 sec)
+
+mysql>  drop table client2;
+Query OK, 0 rows affected (0.06 sec)

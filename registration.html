@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="logi.css">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="register-box">
+            <form onsubmit="return registerUser(event)">
+                <h2>Register</h2>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-person"></i></span>
+                    <input type="text" id="regFullName" required>
+                    <label>Full Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="regEmail" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-passport-fill"></i></span>
+                    <input type="password" id="regPassword" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="bi bi-passport-fill"></i></span>
+                    <input type="password" id="regConfirmPassword" required>
+                    <label>Confirm Password</label>
+                </div>
+                <div class="terms">
+                    <label><input type="checkbox" required> I agree to the Terms and Conditions</label>
+                </div>
+                <button type="submit">Register</button>
+
+                <div class="login_link">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function registerUser(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user details from the form
+            const fullName = document.getElementById('regFullName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+
+            // Store details in localStorage (simulating a database)
+            localStorage.setItem('registeredFullName', fullName);
+            localStorage.setItem('registeredEmail', email);
+            localStorage.setItem('registeredPassword', password);
+
+            alert('You have successfully registered!');
+
+            // Redirect to login page
+            window.location.href = 'login.html';
+            return false;
+        }
+    </script>
+</body>
+</html>

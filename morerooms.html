@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Rooms</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.html">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        footer {
+    background-color:black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 200px;
+}
+footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+footer .footer-content div {
+    flex: 1;
+    margin: 0 10px;
+}
+footer .footer-content ul {
+    list-style-type: none;
+    padding: 0;
+
+}
+footer .footer-content ul li {
+    margin: 5px 0;
+}
+footer .footer-content ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+        h2 {
+            color: hsl(0, 0%, 4%);
+            font-style: inherit;
+            font-family: sans-serif;
+            background-color: azure;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+        .room-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            gap: 20px;
+        }
+        .room-card {
+            background-color: rgba(7, 7, 7, 0.7);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: calc(33% - 40px);
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .room-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .room-card h3 {
+            margin: 10px 0;
+            color: white;
+        }
+        .room-card p {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .room-card button {
+            background-color: gold;
+            border: 2px solid black;
+            color:black;
+            font-family: Arial, sans-serif;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 5px;
+        }
+        .room-card button:hover {
+            background-color: gold;
+            color: white;
+        }
+        .room-card button.bk1 {
+            border-color: #007bff;
+            color: #007bff;
+        }
+        .room-card button.bk1:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        /* Navbar Styling */
+/* Navbar Styling */
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+nav button {
+    float: right;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: #45a049;
+}
+
+
+    </style>
+</head>
+<nav>
+    <a href="home.html">Home</a>
+    <a href="morerooms.html">Rooms</a>
+    <a href="facility.html">Facilities</a>
+    <a href="Contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='registration.html'">Register</button>
+</nav>
+<body>
+    <h2>Our Rooms</h2>
+    <div class="room-cards">
+        <div class="room-card">
+            <h3>Single Room</h3>
+            <img src="1.png" alt="Single Room">
+            <h3>2000₹</h3>
+            <p>Our single rooms are perfect for solo travelers. Enjoy a comfortable bed, free Wi-Fi, and a private bathroom.</p>
+            <button onclick="handleBookNow('single')">BOOK NOW</button>
+            
+            <button class="bk1" onclick="redirectToMoreDetails('single')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>Double Room</h3>
+            <img src="3.png" alt="Double Room">
+            <h3>3000₹</h3>
+            <p>Our double rooms are ideal for couples. Features include a king-sized bed, free Wi-Fi, and a spacious bathroom.</p>
+            <button onclick="handleBookNow('double')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('double')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>Suite</h3>
+            <img src="4.png" alt="Suite">
+            <h3>5000₹</h3>
+            <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+            <button onclick="handleBookNow('suite')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('suite')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>Causual</h3>
+            <img src="rom1.png" alt="rom1">
+            <h3>3000₹</h3>
+            <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+            <button onclick="handleBookNow('causual')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('causual')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>simple</h3>
+            <img src="rom2.png" alt="simple">
+            <h3>5000₹</h3>
+            <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+            <button onclick="handleBookNow('simple')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('suite')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>Suite</h3>
+            <img src="rom3.png" alt="Suite">
+            <h3>5000₹</h3>
+            <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+            <button onclick="handleBookNow('suite')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('suite')">MORE DETAILS</button>
+        </div>
+        <div class="room-card">
+            <h3>Suite</h3>
+            <img src="4.png" alt="Suite">
+            <h3>5000₹</h3>
+            <p>Experience luxury in our suites. Enjoy a separate living area, a king-sized bed, and premium amenities.</p>
+            <button onclick="handleBookNow('single')">BOOK NOW</button>
+            <button class="bk1" onclick="redirectToMoreDetails('suite')">MORE DETAILS</button>
+        </div>
+    </div>
+<br><br><br><br>
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="#">Phone: +8277621878</a></li>
+                    <li><a href="#">Email: hotel@ourhotel.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="facility.html">Facilities</a></li>
+                    <li><a href="morerooms.html">Rooms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <p>DESIGNED BY VARUN M C</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    
+        function redirectToMoreDetails(roomType) {
+            // Replace with your more details page URL and pass room type
+            window.location.href = 'moredetails.html?room=' + roomType;
+        }
+        function validateLogin() {
+            var username = document.getElementById("loginUsername").value;
+            var password = document.getElementById("loginPassword").value;
+
+            if (username === "" || password === "") {
+                alert("Please fill in both fields.");
+                return false;
+            }
+
+            alert("Login successful!");
+            setAuthenticated('true');
+            closePopup('loginPopup');
+            return true;
+        }
+        function validateRegistration() {
+            var username = document.getElementById("registerUsername").value;
+            var email = document.getElementById("registerEmail").value;
+            var password = document.getElementById("registerPassword").value;
+
+            if (username === "" || email === "" || password === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            alert("Registration successful!");
+            setAuthenticated('true');
+            closePopup('registerPopup');
+            return true;
+        }
+        
+        function redirectToMoreDetails(roomType) {
+            // Replace with your more details page URL and pass room type
+            window.location.href = 'moredetails.html?room=' + roomType;
+        }
+        function handleBookNow(roomType) {
+            if (userIsLoggedIn()) {
+                window.location.href = 'booking.html';
+            } else {
+                alert('Please log in or register to book a room.');
+                window.location.href = 'login.html'; // Redirect to login page
+            }
+        }
+
+        function userIsLoggedIn() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+        $(document).ready(function(){
+    $("nav a").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        }
+    });
+});
+$(document).ready(function(){
+    $(".room-card").hide().fadeIn(2000);  // Fades in the room cards over 2 seconds
+});
+
+    </script>
+ 
+</body>
+</html>
